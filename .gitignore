@@ -2,10 +2,19 @@ out/
 target/
 obj/
 .idea/
+bin/
+obj/
+Properties/
 
 *.class
 *.gpr
 *.iml
+
+*.sln
+*.suo
+*.config
+*.csproj
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
