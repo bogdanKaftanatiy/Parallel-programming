@@ -1,4 +1,11 @@
+out/
+target/
+obj/
+.idea/
+
 *.class
+*.gpr
+*.iml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
