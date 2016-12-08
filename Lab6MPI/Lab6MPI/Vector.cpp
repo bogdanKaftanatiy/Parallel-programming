@@ -68,7 +68,7 @@ void Vector::print()
 	if (_size < 6)
 		for (int i = 0; i < _size; i++)
 			printf("%6d ", _data[i]);
-	else printf("Output is to cumbersome!");
+	else printf("Output is to cumbersome!\n");
 	printf("\n");
 }
 

@@ -13,7 +13,7 @@
 #include <iostream>
 #include <mpi.h>
 
-#define N 1000
+#define N 500
 
 void Thread1();
 void Thread2();
@@ -24,7 +24,7 @@ using namespace std;
 int main(int argc, char** argv)
 {
 	MPI_Init(&argc, &argv);
-	#pragma comment(linker, "/STACK:400000000")
+	#pragma comment(linker, "/STACK:4000000")
 
 	int tid;
 
@@ -45,14 +45,12 @@ int main(int argc, char** argv)
 
 	MPI_Finalize();
 
-	cout << "Main thread finished execution!\n";
-	system("pause");
 	return 0;
 }
 
 void Thread1()
 {
-	cout << "Thread 1 started!\n";
+	printf("Thread 1 started!\n");
 
 	Vector* A = new Vector(N, true);
 	Vector* B = new Vector(N, true);
@@ -65,12 +63,12 @@ void Thread1()
 	Sleep(1000);
 	printf("F1 = %d\n", c);
 
-	cout << "Thread 1 finished execution!\n";
+	printf("Thread 1 finished execution!\n");
 }
 
 void Thread2()
 {
-	cout << "Thread 2 started!\n";
+	printf("Thread 2 started!\n");
 
 	Matrix* MG = new Matrix(N, true);
 	Matrix* MH = new Matrix(N, true);
@@ -79,17 +77,17 @@ void Thread2()
 
 	Matrix* MF = *(*MH * *MK) * MG->getMaxElement();
 
-	Sleep(100);
-	cout << "F2 = \n" << MF->getString() << endl;
+	string outRes = "F2 = \n" + MF->getString();
+	printf(outRes.c_str());
 
 	delete MG, MH, MK, MF;
 
-	cout << "Thread 2 finished execution!\n";
+	printf("Thread 2 finished execution!\n");
 }
 
 void Thread3()
 {
-	cout << "Thread 3 started!\n";
+	printf("Thread 3 started!\n");
 
 	Vector* O = new Vector(N, true);
 	Vector* P = new Vector(N, true);
@@ -99,7 +97,8 @@ void Thread3()
 	Vector* T = *((*MR * *MS)->transpose()) * *((*O + *P)->sort());
 
 	delete O, P, T, MR, MS;
-	cout << "F3 = \n" << T->getString() << endl;
+	string result = "F3 = \n" + T->getString();
+	printf(result.c_str());
 
-	cout << "Thread 3 finished execution\n";
+	printf("Thread 3 finished execution\n");
 }
