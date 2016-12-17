@@ -24,7 +24,6 @@ using namespace std;
 int main(int argc, char** argv)
 {
 	MPI_Init(&argc, &argv);
-	#pragma comment(linker, "/STACK:4000000")
 
 	int tid;
 
@@ -60,7 +59,6 @@ void Thread1()
 
 	int c = (*MA * *MB)->getMaxElement() * (*A * *B);
 	delete A, B, MA, MB;
-	Sleep(1000);
 	printf("F1 = %d\n", c);
 
 	printf("Thread 1 finished execution!\n");
