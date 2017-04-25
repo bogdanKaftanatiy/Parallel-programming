@@ -84,8 +84,8 @@ int main(int argc, char* argv[])
 		MPI_Send(Z + H, H * 2, MPI_INT, 1, 0, MPI_COMM_WORLD);
 		MPI_Send(E + H, H * 2, MPI_INT, 1, 0, MPI_COMM_WORLD);
 
-		MPI_Send(Z + (H * 3), H * 3, MPI_INT, 3, 0, MPI_COMM_WORLD);
-		MPI_Send(E + (H * 3), H * 3, MPI_INT, 3, 0, MPI_COMM_WORLD);
+		MPI_Send(Z + (H * 3), N - (H * 3), MPI_INT, 3, 0, MPI_COMM_WORLD);
+		MPI_Send(E + (H * 3), N - (H * 3), MPI_INT, 3, 0, MPI_COMM_WORLD);
 
 
 		MPI_Recv(B, N, MPI_INT, 1, 0, MPI_COMM_WORLD, &status);
@@ -141,11 +141,11 @@ int main(int argc, char* argv[])
 		MPI_Send(MO, N*N, MPI_INT, 1, 0, MPI_COMM_WORLD);
 	}
 	else if (rank == 3) {
-		MPI_Recv(Z + 3 * H, 3 * H, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
-		MPI_Recv(E + 3 * H, 3 * H, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(Z + 3 * H, N - (H * 3), MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(E + 3 * H, N - (H * 3), MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
 
-		MPI_Send(Z + 4 * H, 2 * H, MPI_INT, 4, 0, MPI_COMM_WORLD);
-		MPI_Send(E + 4 * H, 2 * H, MPI_INT, 4, 0, MPI_COMM_WORLD);
+		MPI_Send(Z + 4 * H, N - (H * 4), MPI_INT, 4, 0, MPI_COMM_WORLD);
+		MPI_Send(E + 4 * H, N - (H * 4), MPI_INT, 4, 0, MPI_COMM_WORLD);
 
 
 		MPI_Recv(B, N, MPI_INT, 4, 0, MPI_COMM_WORLD, &status);
@@ -157,11 +157,11 @@ int main(int argc, char* argv[])
 	}
 	else if (rank == 4)
 	{
-		MPI_Recv(Z + 4 * H, 2 * H, MPI_INT, 3, 0, MPI_COMM_WORLD, &status);
-		MPI_Recv(E + 4 * H, 2 * H, MPI_INT, 3, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(Z + 4 * H, N - (H * 4), MPI_INT, 3, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(E + 4 * H, N - (H * 4), MPI_INT, 3, 0, MPI_COMM_WORLD, &status);
 
-		MPI_Send(Z + 5 * H, H, MPI_INT, 5, 0, MPI_COMM_WORLD);
-		MPI_Send(E + 5 * H, H, MPI_INT, 5, 0, MPI_COMM_WORLD);
+		MPI_Send(Z + 5 * H, N - (H * 5), MPI_INT, 5, 0, MPI_COMM_WORLD);
+		MPI_Send(E + 5 * H, N - (H * 5), MPI_INT, 5, 0, MPI_COMM_WORLD);
 
 
 		MPI_Recv(B, N, MPI_INT, 5, 0, MPI_COMM_WORLD, &status);
@@ -183,8 +183,8 @@ int main(int argc, char* argv[])
 		d = 1;
 		inputMatrix(MO);
 
-		MPI_Recv(Z + 5 * H, H, MPI_INT, 4, 0, MPI_COMM_WORLD, &status);
-		MPI_Recv(E + 5 * H, H, MPI_INT, 4, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(Z + 5 * H, N - (H * 5), MPI_INT, 4, 0, MPI_COMM_WORLD, &status);
+		MPI_Recv(E + 5 * H, N - (H * 5), MPI_INT, 4, 0, MPI_COMM_WORLD, &status);
 
 
 		MPI_Recv(B, N, MPI_INT, 2, 0, MPI_COMM_WORLD, &status);
